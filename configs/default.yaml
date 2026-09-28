@@ -13,7 +13,6 @@ grid:
   min_cells: 12
 
 paths:
-  domain_train_manifest: /media/ai5070/HDD16T1/disk_360GB/lth/data_10000_2026
-  domain_val_manifest: /media/ai5070/HDD16T1/disk_360GB/lth/data_test_2025
+  domain_train_root: /media/ai5070/HDD16T1/disk_360GB/lth/data_10000_2026
+  domain_val_root: /media/ai5070/HDD16T1/disk_360GB/lth/data_test_2025
   yolo_lumi_onnx: /home/ai5070/babyalpha/theanh/heatmap/yolov5_lumi.onnx
-
