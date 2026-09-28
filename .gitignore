@@ -22,3 +22,9 @@ reports/generated/
 *.bmp
 *.onnx.data
 
+# Included handoff model weights. Large datasets/videos remain ignored.
+!models/yolov5_lumi.pt
+!models/silu26_teacher_epoch008.pt
+!models/student_mbv2_s32_epoch019_cached.pt
+!models/vww_domain_camera_best.pt
+!models/checksums.sha256

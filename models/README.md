@@ -1,14 +1,24 @@
 # Model registry
 
-Model lớn không nằm trong Git repository. Bản đã dùng trong thí nghiệm nằm ở:
+Repo này đã include các model nhỏ/gọn đủ để tái chạy những benchmark chính của nhánh motion/person-gate. Dataset, video demo, cache train và checkpoint trung gian vẫn để ngoài Git.
 
-- YOLOv5 Lumi: `/home/ai5070/babyalpha/theanh/heatmap/yolov5_lumi.pt` và `.onnx`
-- YOLOv8m Lumi: `benchmark_results/motion_detection_datasets/yolov8m_lumi.pt`
-- YOLO26l Lumi: `benchmark_results/motion_detection_datasets/yolo26l_lumi.pt`
-- Grid distillation epoch 19: `/home/ai5070/babyalpha/robot_ws/benchmark_results/motion_detection_datasets/silu10_grid_train/run_distill_mbv2_s32_silu26_v1/epoch_019_cached.pt`
-- Silu26 teacher epoch 8: `/home/ai5070/babyalpha/robot_ws/benchmark_results/motion_detection_datasets/silu10_grid_train/run_silu26_finetune_from_silu10_v1/epoch_008.pt`
-- VWW domain-camera: `/home/ai5070/babyalpha/robot_ws/benchmark_results/motion_detection_datasets/person_crop_classifier_runs/vww_pytorch_domain_camera_v1/best.pt`
+| File | Vai trò | Ghi chú |
+| --- | --- | --- |
+| `yolov5_lumi.pt` | YOLOv5 Lumi baseline/person detector | Dùng cho pipeline YOLO Lumi + motion và làm nguồn feature cho Silu grid. Không include ONNX/RKNN Lumi trong repo này. |
+| `silu26_teacher_epoch008.pt` | Human grid teacher | Model Silu26 có kết quả tốt nhất trong nhóm heat-grid đã benchmark. |
+| `student_mbv2_s32_epoch019_cached.pt` | Student distillation nhỏ | Model student epoch 19 đã benchmark; chưa đạt teacher nhưng là mốc thử nghiệm quan trọng. |
+| `vww_domain_camera_best.pt` | Person crop classifier | Model VWW/PyTorch finetune trên crop camera-domain, dùng trong hướng motion proposal + classifier. |
 
-Khi bàn giao sang máy khác, copy model vào thư mục ngoài Git rồi truyền đường dẫn qua
-CLI/config. Không commit checkpoint hoặc video vào repo chính; dùng Git LFS/artifact store
-nếu cần chia sẻ chúng.
+Kiểm tra integrity:
+
+```bash
+cd motion_detection_handoff
+sha256sum -c models/checksums.sha256
+```
+
+Các model không đưa vào repo:
+
+- `*.rknn`: phần motion/person-gate trong repo này không chạy RKNN.
+- `yolov5_lumi.onnx`: file lớn và không cần cho pipeline bàn giao hiện tại vì đã có `.pt`.
+- YOLO26L/YOLOv8M probe checkpoint: chỉ dùng để khảo sát kiến trúc/cut-layer, chưa phải model chính trong benchmark cuối.
+- Dataset, video demo, frame cache, teacher cache và checkpoint từng epoch.
