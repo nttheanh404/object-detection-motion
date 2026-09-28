@@ -50,8 +50,9 @@ muốn đo tốc độ và giảm I/O.
 
 ## Dữ liệu và model
 
-Xem [data/README.md](data/README.md) và [models/README.md](models/README.md). Bản đầy đủ
-của inventory cũ nằm ở [../benchmark_results/motion_detection_file_inventory_2026-09-28.md](../benchmark_results/motion_detection_file_inventory_2026-09-28.md).
+Xem [data/README.md](data/README.md), [models/README.md](models/README.md) và
+[docs/source_inventory.md](docs/source_inventory.md). Inventory đầy đủ của workspace cũ
+nằm tại `benchmark_results/motion_detection_file_inventory_2026-09-28.md`.
 
 ## Kết quả đã biết
 
@@ -61,6 +62,7 @@ precision lên 91,2% nhưng image recall giảm còn 86,1%. Student distill MBV2
 19 chưa đạt mức tương đương teacher và cần xem lại trước khi dùng làm model chính.
 
 Các số liệu chi tiết và giới hạn đánh giá nằm trong [docs/benchmark_results.md](docs/benchmark_results.md).
+Danh sách module mới và script lịch sử nằm trong [docs/source_inventory.md](docs/source_inventory.md).
 
 ## Nguyên tắc bàn giao
 
@@ -68,4 +70,3 @@ Các số liệu chi tiết và giới hạn đánh giá nằm trong [docs/bench
 - Mỗi benchmark phải ghi model, manifest, threshold, input size, backend và commit hash.
 - Giữ riêng motion proposal và human gate để có thể thay thế từng module.
 - Khi so sánh chất lượng, dùng cùng manifest và cùng định nghĩa positive/negative.
-
